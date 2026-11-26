@@ -1,173 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#020205">
-  <meta name="description" content="Coming soon.">
-  <title>Coming Soon</title>
-  <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; }
-    html, body { width: 100%; min-height: 100%; margin: 0; }
-    body {
-      min-height: 100svh;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      background: #020205;
-      color: #e8e4df;
-      font-family: Georgia, 'Times New Roman', serif;
-    }
-    #space { position: fixed; inset: 0; width: 100%; height: 100%; opacity: .8; }
-    .nebula {
-      position: fixed; inset: -20%; pointer-events: none;
-      background:
-        radial-gradient(ellipse at 50% 47%, rgba(71,55,105,.13), transparent 27%),
-        radial-gradient(ellipse at 48% 52%, rgba(24,62,91,.10), transparent 42%),
-        radial-gradient(ellipse at 50% 50%, transparent 20%, rgba(0,0,0,.68) 75%);
-      filter: blur(18px);
-    }
-    .scene {
-      position: relative;
-      width: min(760px, 100vw);
-      height: min(760px, 100svh);
-      display: grid;
-      place-items: center;
-      isolation: isolate;
-    }
-    .black-hole {
-      position: absolute;
-      width: min(67vw, 490px);
-      aspect-ratio: 1;
-      top: 43%; left: 50%;
-      transform: translate(-50%, -50%);
-      filter: drop-shadow(0 0 45px rgba(129,105,178,.18));
-    }
-    .disk {
-      position: absolute;
-      left: 50%; top: 50%;
-      width: 100%; height: 34%;
-      border-radius: 50%;
-      transform: translate(-50%, -50%) rotate(-13deg);
-      background: conic-gradient(from 0deg,
-        transparent 0 7%, rgba(93,130,190,.10) 10%, rgba(174,133,220,.92) 17%,
-        rgba(255,218,181,.95) 22%, rgba(255,255,255,.82) 25%,
-        rgba(116,151,216,.62) 31%, transparent 39% 54%,
-        rgba(105,119,185,.24) 63%, rgba(226,160,119,.86) 72%,
-        rgba(255,222,190,.94) 77%, rgba(142,133,209,.45) 83%, transparent 92%);
-      filter: blur(5px);
-      box-shadow: 0 0 25px rgba(181,145,223,.32), 0 0 70px rgba(93,126,190,.17);
-      animation: disk-spin 18s linear infinite;
-    }
-    .disk::before {
-      content: ''; position: absolute; inset: 13% 3%; border-radius: 50%;
-      border: 2px solid rgba(255,220,194,.65);
-      filter: blur(3px);
-    }
-    .disk-back {
-      height: 28%; opacity: .68; transform: translate(-50%, -50%) rotate(167deg) scaleY(.8);
-      filter: blur(9px); animation: disk-spin-back 26s linear infinite;
-    }
-    .lensing {
-      position: absolute; inset: 12%; border-radius: 50%;
-      border: 1px solid rgba(190,166,230,.34);
-      box-shadow: 0 0 14px rgba(167,140,223,.34), inset 0 0 18px rgba(151,137,215,.17);
-      transform: scaleY(.45) rotate(-13deg);
-      animation: lens-pulse 7s ease-in-out infinite;
-    }
-    .core {
-      position: absolute; left: 50%; top: 50%;
-      width: 37%; aspect-ratio: 1; border-radius: 50%;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle at 43% 38%, #000 0 48%, #010104 66%, rgba(1,1,5,.82) 75%, transparent 78%);
-      box-shadow: 0 0 0 9px rgba(3,3,8,.86), 0 0 28px 12px rgba(0,0,0,.98), 0 0 54px 12px rgba(0,0,0,.9);
-      z-index: 2;
-    }
-    .core::after {
-      content: ''; position: absolute; inset: -13%; border-radius: 50%;
-      border: 1px solid rgba(219,199,255,.18);
-      box-shadow: 0 0 18px rgba(166,140,220,.15);
-    }
-    .accretion-glow {
-      position: absolute; inset: 2%; border-radius: 50%;
-      background: radial-gradient(ellipse, transparent 27%, rgba(116,91,173,.10) 38%, transparent 62%);
-      filter: blur(12px); animation: glow 6s ease-in-out infinite;
-    }
-    .message {
-      position: absolute; z-index: 5; top: 77%; left: 50%;
-      transform: translateX(-50%); width: 100%; text-align: center;
-      padding: 0 18px;
-    }
-    h1 {
-      margin: 0; font-weight: 400; font-size: clamp(30px, 5.8vw, 58px);
-      letter-spacing: .24em; text-indent: .24em; text-transform: uppercase;
-      color: rgba(237,233,239,.92);
-      text-shadow: 0 0 24px rgba(179,155,220,.18);
-    }
-    @keyframes disk-spin { from { rotate: 0deg; } to { rotate: 360deg; } }
-    @keyframes disk-spin-back { from { rotate: 0deg; } to { rotate: -360deg; } }
-    @keyframes lens-pulse { 0%,100% { opacity: .55; transform: scaleY(.43) rotate(-13deg); } 50% { opacity: 1; transform: scaleY(.49) rotate(-13deg); } }
-    @keyframes glow { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
-    @media (max-width: 560px) {
-      .scene { height: 88svh; }
-      .black-hole { width: min(88vw, 440px); top: 42%; }
-      .message { top: 75%; }
-      h1 { letter-spacing: .17em; text-indent: .17em; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4f0e8">
+<meta name="description" content="Soham Shetty — a small universe of stories, experiments and unfinished ideas.">
+<title>Soham Shetty — The Curiosity Index</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+  :root{--paper:#f4f0e8;--ink:#191a18;--muted:#77766f;--blue:#3159e8;--lime:#d7f36b;--line:#d8d3c8;--white:#fffdf8;--orange:#ff754d}
+  *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}
+  a{color:inherit;text-decoration:none} button{font:inherit}
+  .topbar{height:66px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+  .brand{font-weight:500;letter-spacing:-.04em;font-size:16px;text-transform:none;font-family:'DM Sans',sans-serif}.brand span{color:var(--blue)}
+  .top-right{display:flex;gap:26px;align-items:center}.status{display:flex;align-items:center;gap:8px}.dot{width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block;box-shadow:0 0 0 4px #ff754d20}
+  .hero{min-height:650px;padding:7vw 8vw 5vw;display:grid;grid-template-columns:1.3fr .7fr;gap:4vw;align-items:center;position:relative;overflow:hidden}
+  .eyebrow{font:11px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.15em;color:var(--blue);display:flex;align-items:center;gap:12px}.eyebrow:before{content:'';width:28px;height:1px;background:var(--blue)}
+  h1{font-size:clamp(64px,10vw,150px);line-height:.83;letter-spacing:-.095em;margin:28px 0 30px;font-weight:800;max-width:900px}h1 em{font-family:'Playfair Display',serif;font-weight:600;color:var(--blue);letter-spacing:-.08em}
+  .hero-copy{font-size:clamp(16px,1.7vw,21px);line-height:1.55;max-width:440px;color:#55564f}.hero-copy strong{color:var(--ink);font-weight:700}
+  .hero-art{height:420px;position:relative;display:flex;align-items:center;justify-content:center}.sun{width:min(31vw,350px);aspect-ratio:1;border-radius:50%;background:var(--lime);position:absolute;right:7%;top:7%;}.orbit{width:min(34vw,390px);aspect-ratio:1;border:1px solid var(--ink);border-radius:50%;position:absolute;right:2%;top:2%;transform:rotate(-24deg)}.orbit:after{content:'';position:absolute;width:13px;height:13px;background:var(--blue);border-radius:50%;top:9%;left:14%}.scribble{position:absolute;z-index:2;font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(35px,5vw,68px);line-height:.95;transform:rotate(-9deg);left:4%;top:37%;max-width:260px}.scribble span{color:var(--blue)}.sticker{position:absolute;right:2%;bottom:5%;z-index:3;background:var(--blue);color:white;border-radius:50%;width:105px;height:105px;display:grid;place-items:center;text-align:center;font:10px/1.4 'DM Mono',monospace;text-transform:uppercase;transform:rotate(12deg);padding:15px}
+  .ticker{background:var(--blue);color:white;overflow:hidden;white-space:nowrap;padding:15px 0;font:12px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase}.ticker div{display:inline-block;animation:marquee 28s linear infinite}.ticker span{padding:0 28px}.ticker b{color:var(--lime);font-weight:400}@keyframes marquee{to{transform:translateX(-50%)}}
+  .section{padding:100px 8vw;border-bottom:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:42px}.kicker{font:11px 'DM Mono',monospace;color:var(--blue);letter-spacing:.13em;text-transform:uppercase}.section h2{font-size:clamp(38px,5vw,68px);letter-spacing:-.07em;line-height:.95;margin:12px 0 0}.section-head p{max-width:270px;color:var(--muted);font-size:13px;line-height:1.6}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.tile{min-height:290px;padding:25px;background:var(--white);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s,border-color .25s}.tile:hover{transform:translateY(-6px);border-color:var(--blue)}.tile-top{display:flex;justify-content:space-between;font:10px 'DM Mono',monospace;text-transform:uppercase;color:var(--muted);letter-spacing:.1em}.tile-symbol{font-size:40px;color:var(--blue);line-height:1}.tile h3{font-size:27px;letter-spacing:-.06em;margin:20px 0 8px}.tile p{font-size:13px;color:var(--muted);line-height:1.55;margin:0;max-width:290px}.tile .arrow{align-self:flex-end;color:var(--blue);font-size:22px}
+  .manifesto{background:var(--lime);padding:100px 8vw;display:grid;grid-template-columns:.35fr 1fr;gap:4vw}.manifesto .kicker{color:#53621e}.manifesto blockquote{font:clamp(32px,5vw,68px)/1.05 'Playfair Display',serif;letter-spacing:-.045em;margin:0;max-width:900px}.manifesto blockquote em{color:var(--blue)}
+  .notes{display:grid;grid-template-columns:1fr 1fr;gap:6vw}.note{border-top:1px solid var(--line);padding-top:18px}.note small{font:10px 'DM Mono',monospace;color:var(--blue);text-transform:uppercase;letter-spacing:.12em}.note h3{font-size:26px;letter-spacing:-.05em;margin:18px 0 8px}.note p{color:var(--muted);font-size:14px;line-height:1.65;max-width:450px}
+  footer{padding:32px 5vw;display:flex;justify-content:space-between;gap:20px;font:10px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+  /* launch lock */
+  .lock{position:fixed;inset:0;z-index:20;background:#171916;color:#f5f1e9;display:grid;grid-template-columns:1fr 1fr;transition:opacity .8s,visibility .8s;overflow:auto}.lock.unlocked{opacity:0;visibility:hidden;pointer-events:none}.lock-left{padding:8vw 7vw;display:flex;flex-direction:column;justify-content:space-between;min-height:100vh}.lock-brand{font:12px 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase}.lock-brand b{color:var(--lime);font-weight:400}.lock-title{font-size:clamp(52px,8vw,112px);line-height:.84;letter-spacing:-.09em;font-weight:800;margin:70px 0 25px}.lock-title em{font-family:'Playfair Display',serif;color:var(--lime);font-weight:600}.lock-sub{max-width:360px;color:#aaa99f;line-height:1.6;font-size:14px}.lock-foot{font:10px 'DM Mono',monospace;color:#77786f;letter-spacing:.12em;text-transform:uppercase}.lock-right{background:var(--lime);color:#171916;display:flex;flex-direction:column;justify-content:center;padding:8vw 6vw;position:relative}.lock-right:before{content:'SS';position:absolute;font-size:clamp(180px,30vw,440px);font-weight:800;letter-spacing:-.12em;opacity:.055;right:2%;bottom:-7%;line-height:1}.count-label{font:11px 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase;margin-bottom:35px}.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;position:relative;z-index:1}.unit{border-top:1px solid #17191670;padding-top:15px}.number{font-size:clamp(42px,6vw,78px);letter-spacing:-.09em;line-height:1;font-weight:700;font-variant-numeric:tabular-nums}.unit-label{font:10px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.12em;margin-top:10px;color:#535a31}.unlock-date{font:11px 'DM Mono',monospace;margin-top:42px;line-height:1.8;position:relative;z-index:1}.lock-mark{font:clamp(80px,13vw,180px)/.8 'Playfair Display',serif;font-style:italic;position:absolute;right:8%;top:9%;color:#171916;opacity:.09;transform:rotate(-12deg)}
+  @media(max-width:760px){.topbar{padding:0 6vw}.top-right a{display:none}.hero{grid-template-columns:1fr;padding:70px 7vw 30px;min-height:auto}.hero-art{height:300px}.sun{width:230px}.orbit{width:260px}.scribble{left:8%;top:38%}.sticker{right:4%;bottom:0;width:85px;height:85px}.section{padding:70px 7vw}.section-head{display:block}.section-head p{margin-top:20px}.grid{grid-template-columns:1fr}.tile{min-height:230px}.manifesto{grid-template-columns:1fr;padding:70px 7vw}.notes{grid-template-columns:1fr;gap:35px}.lock{grid-template-columns:1fr}.lock-left{min-height:auto;padding:28px 7vw 45px}.lock-title{margin:65px 0 20px;font-size:clamp(56px,15vw,92px)}.lock-foot{margin-top:55px}.lock-right{min-height:390px;padding:55px 7vw}.lock-mark{top:3%;right:7%}.number{font-size:clamp(38px,11vw,62px)}footer{padding:25px 7vw;flex-direction:column}}
+  @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-  <canvas id="space" aria-hidden="true"></canvas>
-  <div class="nebula" aria-hidden="true"></div>
-  <main class="scene">
-    <div class="black-hole" aria-hidden="true">
-      <div class="accretion-glow"></div>
-      <div class="disk disk-back"></div>
-      <div class="lensing"></div>
-      <div class="disk"></div>
-      <div class="core"></div>
+<div class="lock" id="lockScreen" aria-label="Website launch countdown">
+  <div class="lock-left">
+    <div class="lock-brand">A NEW CORNER OF THE INTERNET <b>— SS/01</b></div>
+    <div>
+      <div class="eyebrow" style="color:var(--lime)">Something is taking shape</div>
+      <div class="lock-title">NOT YET.<br><em>Almost.</em></div>
+      <p class="lock-sub">A little world of ideas, stories, experiments and unexpected detours. It opens soon. Until then, enjoy the anticipation.</p>
     </div>
-    <div class="message"><h1>Coming Soon</h1></div>
-  </main>
-  <script>
-    (() => {
-      const canvas = document.getElementById('space');
-      const ctx = canvas.getContext('2d');
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      let w = 0, h = 0, stars = [], motes = [], frame = 0;
-      const rand = (a,b) => a + Math.random() * (b-a);
-      function resize() {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        w = window.innerWidth; h = window.innerHeight;
-        canvas.width = Math.round(w*dpr); canvas.height = Math.round(h*dpr);
-        ctx.setTransform(dpr,0,0,dpr,0,0);
-        stars = Array.from({length: Math.min(230, Math.floor(w*h/5200))}, () => ({x:rand(0,w), y:rand(0,h), r:rand(.35,1.25), a:rand(.15,.75), p:rand(0,Math.PI*2)}));
-        motes = Array.from({length: 46}, () => ({a:rand(0,Math.PI*2), r:rand(75,Math.min(w,h)*.36), s:rand(.001,.004), z:rand(.5,1.8)}));
-      }
-      function draw() {
-        ctx.clearRect(0,0,w,h);
-        for (const s of stars) {
-          const twinkle = reduce ? 1 : .68 + Math.sin(frame*.018+s.p)*.32;
-          ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-          ctx.fillStyle = `rgba(220,220,240,${s.a*twinkle})`; ctx.fill();
-        }
-        const cx=w/2, cy=h*.43;
-        for (const m of motes) {
-          if (!reduce) m.a += m.s;
-          const x=cx+Math.cos(m.a)*m.r, y=cy+Math.sin(m.a)*m.r*.34;
-          ctx.beginPath(); ctx.arc(x,y,m.z,0,Math.PI*2);
-          ctx.fillStyle = `rgba(188,166,226,${.18 + .25*Math.sin(m.a*2)**2})`; ctx.fill();
-        }
-        frame++;
-        if (!reduce) requestAnimationFrame(draw);
-      }
-      window.addEventListener('resize', resize, {passive:true});
-      resize(); draw();
-    })();
-  </script>
+    <div class="lock-foot">SOHAM SHETTY · THE CURIOSITY INDEX</div>
+  </div>
+  <div class="lock-right">
+    <div class="lock-mark">S.</div>
+    <div class="count-label">The doors open in</div>
+    <div class="countdown" aria-live="polite">
+      <div class="unit"><div class="number" id="days">02</div><div class="unit-label">Days</div></div>
+      <div class="unit"><div class="number" id="hours">00</div><div class="unit-label">Hours</div></div>
+      <div class="unit"><div class="number" id="minutes">00</div><div class="unit-label">Minutes</div></div>
+      <div class="unit"><div class="number" id="seconds">00</div><div class="unit-label">Seconds</div></div>
+    </div>
+    <div class="unlock-date">UNLOCKS<br><strong>28 NOVEMBER 2026 · 7:08 PM IST</strong><br><br>Come back when the numbers hit zero.</div>
+  </div>
+</div>
+<header class="topbar">
+  <a class="brand" href="#home">soham<span>.</span>shetty</a>
+  <div class="top-right"><a href="#work">The work</a><a href="#notes">Notebook</a><div class="status"><i class="dot"></i> Online, eventually</div></div>
+</header>
+<main>
+  <section class="hero" id="home">
+    <div>
+      <div class="eyebrow">The curiosity index · Vol. 01</div>
+      <h1>Too many<br>ideas.<br><em>One tab.</em></h1>
+      <p class="hero-copy">A home for things made, questions chased, stories imagined and <strong>projects that refuse to stay in the drafts folder.</strong></p>
+    </div>
+    <div class="hero-art"><div class="sun"></div><div class="orbit"></div><div class="scribble">Stay<br><span>curious.</span></div><div class="sticker">Independent<br>thought<br>in progress ↗</div></div>
+  </section>
+  <div class="ticker"><div><span>MAKE SOMETHING</span><b>✳</b><span>ASK BETTER QUESTIONS</span><b>✳</b><span>FOLLOW THE THREAD</span><b>✳</b><span>MAKE SOMETHING</span><b>✳</b><span>ASK BETTER QUESTIONS</span><b>✳</b><span>FOLLOW THE THREAD</span><b>✳</b></div></div>
+  <section class="section" id="work">
+    <div class="section-head"><div><div class="kicker">01 / Things in motion</div><h2>Curiosity, made<br>tangible.</h2></div><p>Different interests. Different rabbit holes. A few things that made it out of the notebook.</p></div>
+    <div class="grid">
+      <article class="tile"><div class="tile-top"><span>01 — Stories</span><span>✳</span></div><div><div class="tile-symbol">↗</div><h3>Worlds & words</h3><p>Fiction, characters, strange places and the joy of building a story one page at a time.</p></div><div class="arrow">↗</div></article>
+      <article class="tile"><div class="tile-top"><span>02 — Experiments</span><span>⌁</span></div><div><div class="tile-symbol">⌘</div><h3>Ideas under a lens</h3><p>Questions about technology, language and how the systems around us actually work.</p></div><div class="arrow">↗</div></article>
+      <article class="tile"><div class="tile-top"><span>03 — Building</span><span>＋</span></div><div><div class="tile-symbol">▧</div><h3>Useful by design</h3><p>Small digital tools and ambitious projects, built to turn a good question into something real.</p></div><div class="arrow">↗</div></article>
+    </div>
+  </section>
+  <section class="manifesto"><div class="kicker">A working philosophy</div><blockquote>“The interesting part is rarely having the answer. It’s finding the question <em>nobody thought to ask.</em>”</blockquote></section>
+  <section class="section" id="notes">
+    <div class="section-head"><div><div class="kicker">02 / From the notebook</div><h2>Currently<br>thinking about.</h2></div><p>A rotating collection of interests. No grand thesis. Just things worth exploring.</p></div>
+    <div class="notes">
+      <article class="note"><small>Field note 001 · Language</small><h3>Can a machine understand a feeling?</h3><p>Where language, emotion and artificial intelligence meet — and what gets lost when we try to measure something human.</p></article>
+      <article class="note"><small>Field note 002 · Storytelling</small><h3>Every place has a hidden plot.</h3><p>The people, histories and tiny details that turn an ordinary setting into somewhere a story can happen.</p></article>
+      <article class="note"><small>Field note 003 · Making</small><h3>Build the useful version first.</h3><p>A reminder that a working prototype can teach you more than a perfect plan sitting untouched.</p></article>
+      <article class="note"><small>Field note 004 · Curiosity</small><h3>Follow the unexpected connection.</h3><p>The best ideas often show up when two unrelated interests happen to occupy the same page.</p></article>
+    </div>
+  </section>
+</main>
+<footer><span>© 2026 Soham Shetty</span><span>An independent little corner of the internet.</span><span>Made with curiosity ↗</span></footer>
+<script>
+  // Fixed launch moment: 28 November 2026, 19:08:04 India Standard Time.
+  const unlockAt = new Date('2026-11-28T19:08:04+05:30').getTime();
+  const lockScreen = document.getElementById('lockScreen');
+  const pad = n => String(n).padStart(2,'0');
+  function tick(){
+    const remaining = unlockAt - Date.now();
+    if(remaining <= 0){
+      ['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');
+      lockScreen.classList.add('unlocked');
+      document.body.style.overflow='';
+      clearInterval(timer);
+      return;
+    }
+    document.getElementById('days').textContent=pad(Math.floor(remaining/86400000));
+    document.getElementById('hours').textContent=pad(Math.floor((remaining%86400000)/3600000));
+    document.getElementById('minutes').textContent=pad(Math.floor((remaining%3600000)/60000));
+    document.getElementById('seconds').textContent=pad(Math.floor((remaining%60000)/1000));
+  }
+  document.body.style.overflow='hidden';
+  tick();
+  const timer=setInterval(tick,1000);
+</script>
 </body>
 </html>
