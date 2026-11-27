@@ -1,10 +1,18 @@
-# Soham Shetty — Variant 07
+# Soham Shetty — Tech Founder Website
 
-Updated version of the existing `DoNotFindme6/soham` website concept. It preserves the dark teal Variant 07 tech-founder design and adds a small, satirical multiverse review of *Rangers of the Wild*, using the cover recovered from the older author-site ZIP.
+A self-contained, responsive HTML site with a 24-hour pre-launch screen.
 
-**Fiction notice:** Soham Shetty Variant 07, his biography, projects, toolkit and credentials are fictional. The review is written as in-universe banter, not an objective assessment.
+## Countdown behaviour
+- The first visit creates a 24-hour deadline in `localStorage`.
+- The deadline persists across refreshes and browser restarts in the same browser profile.
+- At zero, the pre-launch screen fades away and the site becomes visible automatically.
+- Clearing this site's browser storage starts a fresh 24-hour countdown.
+
+## Preview
+Open `index.html` in a browser.
 
 ## Deploy
-- Keep `index.html` at the repository root.
-- Keep the `assets/` directory beside it.
-- Vercel framework preset: Other; no build command or output directory required.
+Upload the contents of this folder to any static hosting provider (for example, GitHub Pages, Netlify, or Cloudflare Pages). No build step or external dependencies are required.
+
+## Before publishing
+Replace the contact placeholder with a public contact method if desired. The projects section is intentionally honest and does not invent credentials or projects.
